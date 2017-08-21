@@ -1,0 +1,9 @@
+logging.level.org.springframework: INFO
+logging.level.org.hibernate: ERROR
+logging.level.com.zachcalvert: DEBUG
+
+load:
+  directories:
+    - classpath:pics1
+    - classpath:pics2
+    - classpath:pics3
