@@ -1,16 +1,19 @@
 package com.zachcalvert.PictureScript.event;
 
+import org.springframework.context.ApplicationEvent;
+
 import java.io.File;
+import java.nio.file.Path;
 
 public class FileDiscoveredEvent {
 
-    private File file;
+    private Path file;
 
-    public FileDiscoveredEvent(File file) {
+    public FileDiscoveredEvent(Path file) {
         this.file = file;
     }
 
-    public File getFile() {
+    public Path getPath() {
         return file;
     }
 }
