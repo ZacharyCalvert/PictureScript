@@ -4,6 +4,8 @@ import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
 import com.zachcalvert.picturescript.model.File;
 import com.zachcalvert.picturescript.repository.FileRepository;
 import com.zachcalvert.picturescript.service.ShaSumCalculator;
+import com.zachcalvert.picturescript.service.meta.FileMetadata;
+import com.zachcalvert.picturescript.service.meta.MetadataExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,15 @@ public class ImageFileProcessor {
 
     private FileRepository fileRepository;
 
+    private MetadataExtractor metadataExtractor;
+
     @Autowired
-    public ImageFileProcessor(ShaSumCalculator shaSumCalculator, FileRepository fileRepository) {
+    public ImageFileProcessor(ShaSumCalculator shaSumCalculator,
+                              FileRepository fileRepository,
+                              MetadataExtractor metadataExtractor) {
         this.shaSumCalculator = shaSumCalculator;
         this.fileRepository = fileRepository;
+        this.metadataExtractor = metadataExtractor;
     }
 
     @EventListener
@@ -41,6 +48,11 @@ public class ImageFileProcessor {
         File file = new File();
         file.setPath(filePath.toAbsolutePath().toString());
         file.setSha256(sha256);
+
+        FileMetadata fileMetadata = metadataExtractor.extractMetaData(event.getPath().toFile());
+        file.setDateCreated(fileMetadata.getFileDateCreated());
+        file.setEarliestKnownDate(fileMetadata.getEarliestMetaDate());
+
         fileRepository.save(file);
     }
 }

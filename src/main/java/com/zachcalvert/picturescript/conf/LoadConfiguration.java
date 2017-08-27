@@ -2,7 +2,6 @@ package com.zachcalvert.picturescript.conf;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.Collection;
 import java.util.List;
 
 @ConfigurationProperties("load")

@@ -1,6 +1,8 @@
 package com.zachcalvert.picturescript.model;
 
 import javax.persistence.*;
+import java.time.Instant;
+import java.util.Date;
 
 @Entity
 public class File {
@@ -14,6 +16,12 @@ public class File {
 
     @Column(nullable = false, unique = true, updatable = false)
     private String path;
+
+    @Column(nullable = false, unique = false, updatable = false)
+    private Instant dateCreated;
+
+    @Column(nullable = false, unique = false, updatable = false)
+    private Instant earliestKnownDate;
 
     public long getId() {
         return id;
@@ -33,5 +41,21 @@ public class File {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Instant getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Instant dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Instant getEarliestKnownDate() {
+        return earliestKnownDate;
+    }
+
+    public void setEarliestKnownDate(Instant earliestKnownDate) {
+        this.earliestKnownDate = earliestKnownDate;
     }
 }
