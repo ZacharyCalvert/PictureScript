@@ -1,4 +1,4 @@
-package com.zachcalvert.PictureScript.service;
+package com.zachcalvert.picturescript.service;
 
 import org.springframework.stereotype.Service;
 

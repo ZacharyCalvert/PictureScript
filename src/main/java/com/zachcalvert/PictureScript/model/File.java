@@ -1,4 +1,4 @@
-package com.zachcalvert.PictureScript.model;
+package com.zachcalvert.picturescript.model;
 
 import javax.persistence.*;
 

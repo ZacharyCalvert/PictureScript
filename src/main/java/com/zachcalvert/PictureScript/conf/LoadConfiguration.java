@@ -1,4 +1,4 @@
-package com.zachcalvert.PictureScript.conf;
+package com.zachcalvert.picturescript.conf;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
