@@ -1,4 +1,4 @@
-package com.zachcalvert.PictureScript.event;
+package com.zachcalvert.picturescript.event;
 
 import org.springframework.context.ApplicationEvent;
 

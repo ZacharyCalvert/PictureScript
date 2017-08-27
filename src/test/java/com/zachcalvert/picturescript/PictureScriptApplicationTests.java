@@ -1,6 +1,6 @@
-package com.zachcalvert.PictureScript;
+package com.zachcalvert.picturescript;
 
-import com.zachcalvert.PictureScript.repository.FileRepository;
+import com.zachcalvert.picturescript.repository.FileRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

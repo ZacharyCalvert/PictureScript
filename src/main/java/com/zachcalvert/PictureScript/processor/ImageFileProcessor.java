@@ -1,9 +1,9 @@
-package com.zachcalvert.PictureScript.processor;
+package com.zachcalvert.picturescript.processor;
 
-import com.zachcalvert.PictureScript.event.FileDiscoveredEvent;
-import com.zachcalvert.PictureScript.model.File;
-import com.zachcalvert.PictureScript.repository.FileRepository;
-import com.zachcalvert.PictureScript.service.ShaSumCalculator;
+import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
+import com.zachcalvert.picturescript.model.File;
+import com.zachcalvert.picturescript.repository.FileRepository;
+import com.zachcalvert.picturescript.service.ShaSumCalculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

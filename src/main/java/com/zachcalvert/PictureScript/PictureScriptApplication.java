@@ -1,6 +1,6 @@
-package com.zachcalvert.PictureScript;
+package com.zachcalvert.picturescript;
 
-import com.zachcalvert.PictureScript.conf.LoadConfiguration;
+import com.zachcalvert.picturescript.conf.LoadConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

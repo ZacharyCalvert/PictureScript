@@ -1,7 +1,7 @@
-package com.zachcalvert.PictureScript.loader;
+package com.zachcalvert.picturescript.loader;
 
-import com.zachcalvert.PictureScript.conf.LoadConfiguration;
-import com.zachcalvert.PictureScript.event.FileDiscoveredEvent;
+import com.zachcalvert.picturescript.conf.LoadConfiguration;
+import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
