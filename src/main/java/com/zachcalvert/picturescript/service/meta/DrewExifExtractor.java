@@ -42,7 +42,7 @@ public class DrewExifExtractor implements MetadataExtractor {
         try {
             ImageMetadataReader.readMetadata(file);
         } catch (Exception e) {
-            logger.error("Error extracting file meta data", e);
+            logger.warn("Error extracting file meta data for {}, due to {}", file.getAbsolutePath(), e.getMessage());
         }
 
         logger.info("Date created for {} is {} with earliest date touch point {}", file.getAbsolutePath(), dateCreated, earliestKnownDate);

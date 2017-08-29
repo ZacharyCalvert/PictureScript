@@ -2,3 +2,17 @@
 logging.level.org.springframework: INFO
 logging.level.org.hibernate: ERROR
 logging.level.com.zachcalvert: DEBUG
+
+output:
+  ignore:
+    - txt
+  image:
+    types:
+      - JPEG
+      - JPG
+      - TIFF
+      - GIF
+      - BMP
+      - PNG
+    subdirectory: pictures
+    format: "{yyyy}/{MM}/{dd}/{filename}"
