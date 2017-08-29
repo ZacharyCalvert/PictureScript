@@ -2,6 +2,7 @@ package com.zachcalvert.picturescript.loader;
 
 import com.zachcalvert.picturescript.conf.LoadConfiguration;
 import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
+import com.zachcalvert.picturescript.event.FileDiscoveryCompleteEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,7 @@ public class BaseDirLoader {
                 logger.error("Error loading directory: " + dir, e);
             }
         });
+        applicationEventPublisher.publishEvent(new FileDiscoveryCompleteEvent());
     }
 
     private class FileFinder extends SimpleFileVisitor<Path> {
