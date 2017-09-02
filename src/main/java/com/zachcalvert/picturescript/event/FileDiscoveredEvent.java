@@ -1,16 +1,24 @@
 package com.zachcalvert.picturescript.event;
 
+import com.zachcalvert.picturescript.model.FolderBase;
 import java.nio.file.Path;
 
 public class FileDiscoveredEvent {
 
-    private Path file;
+    private Path path;
 
-    public FileDiscoveredEvent(Path file) {
-        this.file = file;
+    private FolderBase folderBase;
+
+    public FileDiscoveredEvent(Path path, FolderBase folderBase) {
+        this.path = path;
+        this.folderBase = folderBase;
     }
 
     public Path getPath() {
-        return file;
+        return path;
+    }
+
+    public FolderBase getFolderBase() {
+        return folderBase;
     }
 }

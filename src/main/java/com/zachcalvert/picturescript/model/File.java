@@ -23,6 +23,9 @@ public class File {
     @Column(nullable = false, unique = false, updatable = false)
     private Instant earliestKnownDate;
 
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private FolderBase folderBase;
+
     public long getId() {
         return id;
     }
@@ -57,5 +60,13 @@ public class File {
 
     public void setEarliestKnownDate(Instant earliestKnownDate) {
         this.earliestKnownDate = earliestKnownDate;
+    }
+
+    public FolderBase getFolderBase() {
+        return folderBase;
+    }
+
+    public void setFolderBase(FolderBase folderBase) {
+        this.folderBase = folderBase;
     }
 }
