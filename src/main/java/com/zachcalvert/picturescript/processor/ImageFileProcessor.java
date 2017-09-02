@@ -4,6 +4,7 @@ import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
 import com.zachcalvert.picturescript.event.FileInjestedEvent;
 import com.zachcalvert.picturescript.model.File;
 import com.zachcalvert.picturescript.repository.FileRepository;
+import com.zachcalvert.picturescript.service.FileExtensionExtractorService;
 import com.zachcalvert.picturescript.service.ShaSumCalculator;
 import com.zachcalvert.picturescript.service.meta.FileMetadata;
 import com.zachcalvert.picturescript.service.meta.MetadataExtractor;
@@ -30,16 +31,20 @@ public class ImageFileProcessor {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    private final FileExtensionExtractorService fileExtensionExtractorService;
+
     @Autowired
     public ImageFileProcessor(
             ShaSumCalculator shaSumCalculator,
             FileRepository fileRepository,
             MetadataExtractor metadataExtractor,
-            ApplicationEventPublisher applicationEventPublisher) {
+            ApplicationEventPublisher applicationEventPublisher,
+            FileExtensionExtractorService fileExtensionExtractorService) {
         this.shaSumCalculator = shaSumCalculator;
         this.fileRepository = fileRepository;
         this.metadataExtractor = metadataExtractor;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.fileExtensionExtractorService = fileExtensionExtractorService;
     }
 
     @EventListener
@@ -61,6 +66,8 @@ public class ImageFileProcessor {
             FileMetadata fileMetadata = metadataExtractor.extractMetaData(event.getPath().toFile());
             file.setDateCreated(fileMetadata.getFileDateCreated());
             file.setEarliestKnownDate(fileMetadata.getEarliestMetaDate());
+            file.setFolderBase(event.getFolderBase());
+            file.setExtension(fileExtensionExtractorService.getExtension(filePath));
 
             fileRepository.save(file);
         } finally {

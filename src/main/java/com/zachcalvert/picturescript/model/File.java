@@ -23,6 +23,9 @@ public class File {
     @Column(nullable = false, unique = false, updatable = false)
     private Instant earliestKnownDate;
 
+    @Column(nullable = true, unique = false, updatable = false)
+    private String extension;
+
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private FolderBase folderBase;
 
@@ -68,5 +71,13 @@ public class File {
 
     public void setFolderBase(FolderBase folderBase) {
         this.folderBase = folderBase;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 }
