@@ -1,6 +1,6 @@
 package com.zachcalvert.picturescript;
 
-import com.zachcalvert.picturescript.repository.FileRepository;
+import com.zachcalvert.picturescript.out.conf.OutputConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,17 +12,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {PictureScriptApplication.class})
 @ActiveProfiles("test")
-public class PictureScriptApplicationTests {
+public class OutputConfigurationTest {
 
-	@Test
-	public void contextLoads() {
-	}
+  @Autowired
+  private OutputConfiguration outputConfiguration;
 
-	@Autowired
-	FileRepository fileRepository;
+  @Test
+  public void evaluateOutputExtraction() {
+    Assert.assertEquals(2, outputConfiguration.getTemplates().size());
+    Assert.assertEquals(1, outputConfiguration.getTargets().size());
 
-	@Test
-	public void testTotalCount() {
-		Assert.assertEquals("Unexpected count of total files to be processed as part of application startup", 5, fileRepository.count());
-	}
+    
+  }
 }

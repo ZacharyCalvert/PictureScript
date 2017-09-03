@@ -3,10 +3,14 @@ logging.level.org.springframework: INFO
 logging.level.org.hibernate: ERROR
 logging.level.com.zachcalvert: DEBUG
 
-output:
+load:
   ignore:
     - txt
-  image:
+    - pdf
+
+
+output.templates:
+  - name: photos
     types:
       - JPEG
       - JPG
@@ -14,5 +18,14 @@ output:
       - GIF
       - BMP
       - PNG
-    subdirectory: pictures
-    format: "{yyyy}/{MM}/{dd}/{filename}"
+    format: "photos/{yyyy}/{MM}/{dd}/{filename}"
+  - name: movies
+    types:
+      - avi
+      - mov
+      - wmv
+      - mp4
+      - mv4p
+      - mpg
+      - mpeg
+    format: "movies/{yyyy}/{MM}/{dd}/{filename}"

@@ -7,7 +7,7 @@ load:
     - classpath:pics1
     - classpath:pics2
     - classpath:pics3
-output:
-  directories:
-    - classpath:out1
-    - classpath:out2
+
+output.targets:
+  - template: photos
+    directory: classpath:o1
