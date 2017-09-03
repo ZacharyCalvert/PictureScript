@@ -2,7 +2,7 @@
 
  _This utility is under heavy construction._
 
-This Spring Boot organized Java application is meant to crawl input directories, calculate thie file 
+This Spring Boot organized Java application is meant to crawl input directories, calculate the file 
 sha-256 checksums, and treat those check-sum collisions as file duplicates.  Output is delivered
 to configured output directories, or potentially re-organized based on the output naming.  
 

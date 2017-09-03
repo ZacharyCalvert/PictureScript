@@ -22,6 +22,6 @@ public class OutputConfigurationTest {
     Assert.assertEquals(2, outputConfiguration.getTemplates().size());
     Assert.assertEquals(1, outputConfiguration.getTargets().size());
 
-    
+
   }
 }
