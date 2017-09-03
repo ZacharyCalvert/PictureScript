@@ -2,3 +2,30 @@
 logging.level.org.springframework: INFO
 logging.level.org.hibernate: ERROR
 logging.level.com.zachcalvert: DEBUG
+
+load:
+  ignore:
+    - txt
+    - pdf
+
+
+output.templates:
+  - name: photos
+    types:
+      - JPEG
+      - JPG
+      - TIFF
+      - GIF
+      - BMP
+      - PNG
+    format: "photos/{yyyy}/{MM}/{dd}/{filename}"
+  - name: movies
+    types:
+      - avi
+      - mov
+      - wmv
+      - mp4
+      - mv4p
+      - mpg
+      - mpeg
+    format: "movies/{yyyy}/{MM}/{dd}/{filename}"

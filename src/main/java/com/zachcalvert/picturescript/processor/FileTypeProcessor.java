@@ -2,11 +2,13 @@ package com.zachcalvert.picturescript.processor;
 
 import com.drew.imaging.FileType;
 import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
+import com.zachcalvert.picturescript.service.FileExtensionExtractorService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -21,10 +23,18 @@ public class FileTypeProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(FileType.class);
 
+    private FileExtensionExtractorService fileExtensionExtractorService;
+
+    @Autowired
+    public FileTypeProcessor(
+        FileExtensionExtractorService fileExtensionExtractorService) {
+        this.fileExtensionExtractorService = fileExtensionExtractorService;
+    }
+
     @EventListener
     public void processFileDiscovery(FileDiscoveredEvent event) {
 
-        String extension = StringUtils.lowerCase(FilenameUtils.getExtension(event.getPath().toString()));
+        String extension = fileExtensionExtractorService.getExtension(event.getPath());
         synchronized (fileTypesProcssed) {
             if (!fileTypesProcssed.contains(extension)) {
                 logger.info("New file type found: " + extension);

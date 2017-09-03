@@ -2,6 +2,10 @@ package com.zachcalvert.picturescript.loader;
 
 import com.zachcalvert.picturescript.conf.LoadConfiguration;
 import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
+import com.zachcalvert.picturescript.event.FileDiscoveryCompleteEvent;
+import com.zachcalvert.picturescript.model.FolderBase;
+import com.zachcalvert.picturescript.repository.FolderBaseRepository;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,10 +34,15 @@ public class BaseDirLoader {
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    private final FolderBaseRepository folderBaseRepository;
+
     @Autowired
-    public BaseDirLoader(LoadConfiguration loadConfiguration, ApplicationEventPublisher applicationEventPublisher) {
+    public BaseDirLoader(LoadConfiguration loadConfiguration,
+        ApplicationEventPublisher applicationEventPublisher,
+        FolderBaseRepository folderBaseRepository) {
         this.loadConfiguration = loadConfiguration;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.folderBaseRepository = folderBaseRepository;
     }
 
     @EventListener
@@ -41,6 +50,10 @@ public class BaseDirLoader {
         loadConfiguration.getDirectories().stream().forEach((dir) -> {
             logger.debug("Directory configured for processing: " + dir);
 
+            FolderBase folderBase = new FolderBase();
+            folderBase.setFromOutput(false);
+            folderBase.setPath(dir);
+            folderBaseRepository.save(folderBase);
 
             try {
                 Path dirPath;
@@ -51,19 +64,32 @@ public class BaseDirLoader {
                     dirPath = Paths.get(dir);
                 }
 
-                Files.walkFileTree(dirPath, new FileFinder());
+                Files.walkFileTree(dirPath, new FileFinder(folderBase));
             } catch (Exception e) {
                 logger.error("Error loading directory: " + dir, e);
             }
         });
+        applicationEventPublisher.publishEvent(new FileDiscoveryCompleteEvent());
+    }
+
+    private boolean isIgnored(Path file) {
+        String type = StringUtils.lowerCase(FilenameUtils.getExtension(file.toString()));
+        return loadConfiguration.getIgnore().contains(type);
     }
 
     private class FileFinder extends SimpleFileVisitor<Path> {
+
+        private FolderBase folderBase;
+
+        public FileFinder(FolderBase folderBase) {
+            this.folderBase = folderBase;
+        }
+
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            if (attrs.isRegularFile()) {
+            if (attrs.isRegularFile() && ! isIgnored(file)) {
                 logger.info("File found: " + file.toAbsolutePath());
-                FileDiscoveredEvent event = new FileDiscoveredEvent(file);
+                FileDiscoveredEvent event = new FileDiscoveredEvent(file, folderBase);
                 applicationEventPublisher.publishEvent(event);
             }
             return FileVisitResult.CONTINUE;
