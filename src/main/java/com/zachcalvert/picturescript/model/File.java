@@ -5,6 +5,11 @@ import java.time.Instant;
 import java.util.Date;
 
 @Entity
+@Table(
+    indexes = {
+        @Index(columnList = "sha256", name = "idx_file_sha256")
+    }
+)
 public class File {
 
     @Id
