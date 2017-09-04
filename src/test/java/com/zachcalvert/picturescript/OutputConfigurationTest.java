@@ -1,6 +1,8 @@
 package com.zachcalvert.picturescript;
 
 import com.zachcalvert.picturescript.out.conf.OutputConfiguration;
+import com.zachcalvert.picturescript.out.conf.OutputOrder;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +19,17 @@ public class OutputConfigurationTest {
   @Autowired
   private OutputConfiguration outputConfiguration;
 
+  @Autowired
+  private List<OutputOrder> outputOrders;
+
   @Test
   public void evaluateOutputExtraction() {
     Assert.assertEquals(2, outputConfiguration.getTemplates().size());
     Assert.assertEquals(1, outputConfiguration.getTargets().size());
+  }
 
-
+  @Test
+  public void evaluateOutputOrders() {
+    Assert.assertEquals(1, outputOrders.size());
   }
 }

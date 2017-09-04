@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 public class FileExtensionExtractorService {
 
   public String getExtension(File file) {
-    return StringUtils.lowerCase(FilenameUtils.getExtension(file.getAbsolutePath()));
-  }
-
-  public String getExtension(com.zachcalvert.picturescript.model.File file) {
-    return StringUtils.lowerCase(FilenameUtils.getExtension(file.getPath()));
+    return standardizeCaseFileExtension(FilenameUtils.getExtension(file.getAbsolutePath()));
   }
 
   public String getExtension(Path path) {
     return getExtension(path.toFile());
+  }
+
+  public String standardizeCaseFileExtension(String extension) {
+    return StringUtils.lowerCase(extension);
   }
 }
