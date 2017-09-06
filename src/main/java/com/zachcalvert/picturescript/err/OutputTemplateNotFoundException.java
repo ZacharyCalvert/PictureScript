@@ -1,8 +1,8 @@
 package com.zachcalvert.picturescript.err;
 
-public class OutputTemplateNotFound extends RuntimeException {
+public class OutputTemplateNotFoundException extends RuntimeException {
 
-  public OutputTemplateNotFound(String message) {
+  public OutputTemplateNotFoundException(String message) {
     super(message);
   }
 }
