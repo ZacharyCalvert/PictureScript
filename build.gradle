@@ -50,6 +50,12 @@ dependencies {
     compile('org.apache.commons:commons-lang3:3.6')
     compile('commons-io:commons-io:2.4')
 
+    // json
+    compile('com.fasterxml.jackson:jackson-bom:2.9.0.pr4')
+    compile('com.fasterxml.jackson.core:jackson-core')
+    compile('com.fasterxml.jackson.core:jackson-databind')
+    compile('com.fasterxml.jackson.core:jackson-annotations')
+
     // testing
     testCompile('org.jmockit:jmockit:1.8')
     testCompile('org.springframework.boot:spring-boot-starter-test')
