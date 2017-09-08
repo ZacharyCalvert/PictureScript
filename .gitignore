@@ -15,9 +15,9 @@
 *.iws
 *.iml
 *.ipr
-out
 .DS_Store
 classes
+./out
 
 ### NetBeans ###
 nbproject/private/
