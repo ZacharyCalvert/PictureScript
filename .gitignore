@@ -17,7 +17,7 @@
 *.ipr
 .DS_Store
 classes
-./out
+/out/
 
 ### NetBeans ###
 nbproject/private/
