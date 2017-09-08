@@ -1,6 +1,6 @@
 package com.zachcalvert.picturescript;
 
-import com.zachcalvert.picturescript.out.conf.OutputConfiguration;
+import com.zachcalvert.picturescript.out.conf.YmlOutputConfiguration;
 import com.zachcalvert.picturescript.out.conf.OutputOrder;
 import java.util.List;
 import org.junit.Assert;
@@ -14,18 +14,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {PictureScriptApplication.class})
 @ActiveProfiles("test")
-public class OutputConfigurationTest {
+public class YmlOutputConfigurationTest {
 
   @Autowired
-  private OutputConfiguration outputConfiguration;
+  private YmlOutputConfiguration ymlOutputConfiguration;
 
   @Autowired
   private List<OutputOrder> outputOrders;
 
   @Test
   public void evaluateOutputExtraction() {
-    Assert.assertEquals(2, outputConfiguration.getTemplates().size());
-    Assert.assertEquals(1, outputConfiguration.getTargets().size());
+    Assert.assertEquals(2, ymlOutputConfiguration.getTemplates().size());
+    Assert.assertEquals(1, ymlOutputConfiguration.getTargets().size());
   }
 
   @Test
