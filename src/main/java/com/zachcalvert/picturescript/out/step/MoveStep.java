@@ -4,8 +4,12 @@ import com.zachcalvert.picturescript.err.StepFailedException;
 import com.zachcalvert.picturescript.err.StepInvalidException;
 import java.nio.file.Path;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MoveStep implements OutputStep {
+
+  private static final Logger logger = LoggerFactory.getLogger(MoveStep.class);
 
   private Path from;
 
@@ -19,8 +23,9 @@ public class MoveStep implements OutputStep {
   @Override
   public void execute() {
     if (to.toFile().exists()) {
-      throw new StepInvalidException(String.format("Cannot move %s to %s", from.toString(), to.toString()));
+      to = resolveConflict(to);
     }
+    logger.info("Will move {} to {}", from.toString(), to.toString());
     try {
       FileUtils.moveFile(from.toFile(), to.toFile());
     } catch (Exception e) {
