@@ -1,6 +1,5 @@
 
 # Next Work
-- Dry run support (no execution of operation)
 - Send events of moves/copies
 - Output definition
 - Monitor output events
@@ -10,6 +9,9 @@
 - Integration (e-2-e) tests
 - Command line instead of SB YML
 - Thread output processing
+- Code coverage
+- Jenkins
+- Wire to maven central?
 
 # Branches 
 - Output eventing
@@ -21,3 +23,4 @@
 - Complete name substitutions 
 - Define plan
 - Execute plan
+- Dry run support (no execution of operation)

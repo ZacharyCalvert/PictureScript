@@ -60,7 +60,7 @@ public class OrderDeliveryService {
     }
     for (OutputStep step:steps) {
       // TODO step complete event
-      step.execute();
+      step.execute(order.isDryRun());
     }
     // TODO order complete event
   }

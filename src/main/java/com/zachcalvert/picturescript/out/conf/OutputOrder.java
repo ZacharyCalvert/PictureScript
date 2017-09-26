@@ -8,10 +8,13 @@ public class OutputOrder {
 
   private YmlOutputTemplate ymlOutputTemplate;
 
-  public OutputOrder(Path basePath,
-      YmlOutputTemplate ymlOutputTemplate) {
-    this.baseOutputPath = basePath;
+  private boolean dryRun;
+
+  public OutputOrder(Path baseOutputPath,
+      YmlOutputTemplate ymlOutputTemplate, boolean dryRun) {
+    this.baseOutputPath = baseOutputPath;
     this.ymlOutputTemplate = ymlOutputTemplate;
+    this.dryRun = dryRun;
   }
 
   public Path getBaseOutputPath() {
@@ -20,5 +23,9 @@ public class OutputOrder {
 
   public YmlOutputTemplate getYmlOutputTemplate() {
     return ymlOutputTemplate;
+  }
+
+  public boolean isDryRun() {
+    return dryRun;
   }
 }

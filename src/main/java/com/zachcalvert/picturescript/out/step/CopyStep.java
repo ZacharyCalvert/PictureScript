@@ -21,13 +21,15 @@ public class CopyStep implements OutputStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(boolean dryRun) {
     if (to.toFile().exists()) {
       to = resolveConflict(to);
     }
     logger.info("Will copy {} to {}", from.toString(), to.toString());
     try {
-      FileUtils.copyFile(from.toFile(), to.toFile());
+      if (!dryRun) {
+        FileUtils.copyFile(from.toFile(), to.toFile());
+      }
     } catch (Exception e) {
       throw new StepFailedException(String.format("Failure to copy %s to %s", from.toString(), to.toString()), e);
     }

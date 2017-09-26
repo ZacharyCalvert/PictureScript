@@ -7,7 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 
 public interface OutputStep {
 
-  void execute();
+  void execute(boolean dryRun);
 
   default Path resolveConflict(Path destination) {
     int iteration = 1;
