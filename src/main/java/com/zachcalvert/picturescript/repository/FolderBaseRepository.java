@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface FolderBaseRepository extends CrudRepository<FolderBase, Long> {
 
+  FolderBase findByPathAndFromOutput(String path, boolean fromOutput);
 }
