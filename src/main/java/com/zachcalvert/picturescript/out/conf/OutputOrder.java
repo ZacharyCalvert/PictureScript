@@ -1,19 +1,21 @@
 package com.zachcalvert.picturescript.out.conf;
 
+import java.nio.file.Path;
+
 public class OutputOrder {
 
-  private String target;
+  private Path baseOutputPath;
 
   private YmlOutputTemplate ymlOutputTemplate;
 
-  public OutputOrder(String target,
+  public OutputOrder(Path basePath,
       YmlOutputTemplate ymlOutputTemplate) {
-    this.target = target;
+    this.baseOutputPath = basePath;
     this.ymlOutputTemplate = ymlOutputTemplate;
   }
 
-  public String getTarget() {
-    return target;
+  public Path getBaseOutputPath() {
+    return baseOutputPath;
   }
 
   public YmlOutputTemplate getYmlOutputTemplate() {

@@ -2,10 +2,15 @@ package com.zachcalvert.picturescript.out.conf;
 
 import com.zachcalvert.picturescript.err.OutputTemplateNotFoundException;
 import com.zachcalvert.picturescript.service.FileExtensionExtractorService;
+import com.zachcalvert.picturescript.service.PathService;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -17,16 +22,22 @@ public class OutputPreprocessor {
 
   private final FileExtensionExtractorService fileExtensionExtractorService;
 
+  private final PathService pathService;
+
+  private final static Logger logger = LoggerFactory.getLogger(OutputPreprocessor.class);
+
   @Autowired
   public OutputPreprocessor(
       YmlOutputConfiguration ymlOutputConfiguration,
-      FileExtensionExtractorService fileExtensionExtractorService) {
+      FileExtensionExtractorService fileExtensionExtractorService,
+      PathService pathService) {
     this.ymlOutputConfiguration = ymlOutputConfiguration;
     this.fileExtensionExtractorService = fileExtensionExtractorService;
+    this.pathService = pathService;
   }
 
   @Bean
-  public List<OutputOrder> outputOrders() {
+  public List<OutputOrder> outputOrders() throws IOException {
     final HashMap<String, YmlOutputTemplate> nameToTemplateMapping = new HashMap<>();
     ymlOutputConfiguration
         .getTemplates().stream().forEach(t -> nameToTemplateMapping.put(t.getName(), t));
@@ -37,7 +48,9 @@ public class OutputPreprocessor {
         throw new OutputTemplateNotFoundException(String.format("Ouptut template '%s' not found", target.getTemplate()));
       }
       template.setTypes(template.getTypes().stream().map(fileExtensionExtractorService::standardizeCaseFileExtension).collect(Collectors.toList()));
-      result.add(new OutputOrder(target.getDirectory(), template));
+      Path outputPath = pathService.getPath(target.getDirectory());
+      logger.info("Output for template {} configured to full path of {}", template.getName(), outputPath.toString());
+      result.add(new OutputOrder(outputPath, template));
     }
     return result;
   }

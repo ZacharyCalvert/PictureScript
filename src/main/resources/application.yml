@@ -18,7 +18,7 @@ output.templates:
       - GIF
       - BMP
       - PNG
-    format: "photos/{yyyy}/{MM}/{dd}/{filename}"
+    format: "${base}/photos/${yyyy}/${MM}/${dd}/${filename}"
   - name: movies
     types:
       - avi
@@ -28,4 +28,4 @@ output.templates:
       - mv4p
       - mpg
       - mpeg
-    format: "movies/{yyyy}/{MM}/{dd}/{filename}"
+    format: "${base}/movies/${yyyy}/${MM}/${dd}/${filename}"

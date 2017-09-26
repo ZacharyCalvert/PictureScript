@@ -13,6 +13,11 @@ public interface FileRepository extends JpaRepository<File, Long> {
   @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.extension in :fileTypes and f.folderBase.fromOutput = false")
   List<String> findRequiredOutputShaSums(@Param("fileTypes") List<String> fileTypes);
 
-  @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.sha256 in :shaSums and f.folderBase <> :folderBase")
+  @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.sha256 in :shaSums and f.folderBase = :folderBase")
   List<String> findMoveShaSums(@Param("shaSums") List<String> shaSums, @Param("folderBase") FolderBase folderBase);
+
+  @Query("SELECT f FROM File f WHERE f.sha256 = :sha and f.folderBase = :folderBase")
+  File findFileFileForMove(@Param("sha") String sha, @Param("folderBase") FolderBase folderBase);
+
+  File findTopBySha256OrderByEarliestKnownDateDesc(String shaSum);
 }

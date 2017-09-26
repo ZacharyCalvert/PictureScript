@@ -49,6 +49,7 @@ dependencies {
     // utilities
     compile('org.apache.commons:commons-lang3:3.6')
     compile('commons-io:commons-io:2.4')
+    compile('org.apache.commons:commons-text:1.1')
 
     // json
     compile('com.fasterxml.jackson:jackson-bom:2.9.0.pr4')

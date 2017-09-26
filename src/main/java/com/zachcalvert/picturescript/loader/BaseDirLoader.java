@@ -5,6 +5,7 @@ import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
 import com.zachcalvert.picturescript.event.FileDiscoveryCompleteEvent;
 import com.zachcalvert.picturescript.model.FolderBase;
 import com.zachcalvert.picturescript.repository.FolderBaseRepository;
+import com.zachcalvert.picturescript.service.PathService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -26,8 +27,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 @Component
 public class BaseDirLoader {
 
-    private static final String CLASSPATH_PREFIX = "classpath:";
-
     private static final Logger logger = LoggerFactory.getLogger(BaseDirLoader.class);
 
     private LoadConfiguration loadConfiguration;
@@ -36,13 +35,17 @@ public class BaseDirLoader {
 
     private final FolderBaseRepository folderBaseRepository;
 
+    private final PathService pathService;
+
     @Autowired
     public BaseDirLoader(LoadConfiguration loadConfiguration,
         ApplicationEventPublisher applicationEventPublisher,
-        FolderBaseRepository folderBaseRepository) {
+        FolderBaseRepository folderBaseRepository,
+        PathService pathService) {
         this.loadConfiguration = loadConfiguration;
         this.applicationEventPublisher = applicationEventPublisher;
         this.folderBaseRepository = folderBaseRepository;
+        this.pathService = pathService;
     }
 
     @EventListener
@@ -56,14 +59,8 @@ public class BaseDirLoader {
             folderBaseRepository.save(folderBase);
 
             try {
-                Path dirPath;
-                if (StringUtils.startsWith(dir, "classpath:")) {
-                    ClassPathResource resource = new ClassPathResource(StringUtils.removeStart(dir, CLASSPATH_PREFIX));
-                    dirPath = Paths.get(resource.getURI());
-                } else {
-                    dirPath = Paths.get(dir);
-                }
-
+                Path dirPath = pathService.getPath(dir);
+                logger.debug("Full directory path for input processing: " + dirPath.toString());
                 Files.walkFileTree(dirPath, new FileFinder(folderBase));
             } catch (Exception e) {
                 logger.error("Error loading directory: " + dir, e);
