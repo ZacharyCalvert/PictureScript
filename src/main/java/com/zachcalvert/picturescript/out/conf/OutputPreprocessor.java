@@ -50,7 +50,7 @@ public class OutputPreprocessor {
       template.setTypes(template.getTypes().stream().map(fileExtensionExtractorService::standardizeCaseFileExtension).collect(Collectors.toList()));
       Path outputPath = pathService.getPath(target.getDirectory());
       logger.info("Output for template {} configured to full path of {}", template.getName(), outputPath.toString());
-      result.add(new OutputOrder(outputPath, template));
+      result.add(new OutputOrder(outputPath, template, target.isDryRun()));
     }
     return result;
   }

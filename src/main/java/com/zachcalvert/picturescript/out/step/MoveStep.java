@@ -21,13 +21,15 @@ public class MoveStep implements OutputStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(boolean dryRun) {
     if (to.toFile().exists()) {
       to = resolveConflict(to);
     }
     logger.info("Will move {} to {}", from.toString(), to.toString());
     try {
-      FileUtils.moveFile(from.toFile(), to.toFile());
+      if (!dryRun) {
+        FileUtils.moveFile(from.toFile(), to.toFile());
+      }
     } catch (Exception e) {
       throw new StepFailedException(String.format("Failure to mov %s to %s", from.toString(), to.toString()), e);
     }

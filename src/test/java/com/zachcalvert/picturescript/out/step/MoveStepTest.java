@@ -18,8 +18,8 @@ public class MoveStepTest {
     Path to = Paths.get(temp.getAbsolutePath(), "to.jpg");
     Path collision = Paths.get(temp.getAbsolutePath(), "to_1.jpg");
     FileUtils.writeStringToFile(from.toFile(), "testdata");
-    new CopyStep(from, to).execute();
-    new MoveStep(from, to).execute();
+    new CopyStep(from, to).execute(false);
+    new MoveStep(from, to).execute(false);
     String copiedData = FileUtils.readFileToString(to.toFile());
     assertEquals(copiedData, "testdata");
 
