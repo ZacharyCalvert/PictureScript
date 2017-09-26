@@ -1,14 +1,16 @@
 
 # Next Work
-- Send events of moves/copies
 - Output definition
 - Monitor output events
 - Track original file name
+- Load output file and validate existing files
 - Retain move/copy file attributes
 - Update file path when moving (ie update File h2 entry)
+- Transactions applied to move (write lock)/copy (read lock)
 - Integration (e-2-e) tests
 - Command line instead of SB YML
 - Thread output processing
+- Browser review
 - Code coverage
 - Jenkins
 - Wire to maven central?
@@ -24,3 +26,4 @@
 - Define plan
 - Execute plan
 - Dry run support (no execution of operation)
+- Send events of moves/copies
