@@ -1,6 +1,7 @@
 
 # Next Work
 - Output definition
+- Add original file name tracking
 - Monitor output events
 - Track original file name
 - Load output file and validate existing files

@@ -22,6 +22,12 @@ public class MoveStep implements OutputStep {
 
   @Override
   public void execute(boolean dryRun) {
+    if (to.equals(from)) {
+      logger.info("File move would have no effect.  Skipping for {}", from.toString());
+      return;
+    }
+
+
     if (to.toFile().exists()) {
       to = resolveConflict(to);
     }

@@ -1,10 +1,10 @@
-package com.zachcalvert.picturescript.out.status;
+package com.zachcalvert.picturescript.out.meta;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.Instant;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WrittenFile {
+public class MetaFile {
 
     private String sha256;
 
