@@ -12,6 +12,19 @@ import java.util.Date;
 )
 public class File {
 
+    public File() {
+    }
+
+    public File(String sha256, String path, Instant dateCreated, Instant earliestKnownDate,
+        String extension, FolderBase folderBase) {
+        this.sha256 = sha256;
+        this.path = path;
+        this.dateCreated = dateCreated;
+        this.earliestKnownDate = earliestKnownDate;
+        this.extension = extension;
+        this.folderBase = folderBase;
+    }
+
     @Id
     @GeneratedValue
     private long id;

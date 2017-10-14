@@ -13,6 +13,32 @@ buildscript {
     }
 }
 
+subprojects {
+
+    apply plugin: 'java'
+
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        all*.exclude module: 'spring-boot-starter-logging'
+        all*.exclude module: 'logback-classic'
+        all*.exclude module: 'logback-core'
+    }
+
+    dependencies {
+
+        // testing
+        testCompile('org.jmockit:jmockit:1.8')
+        testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
@@ -32,6 +58,18 @@ configurations {
 }
 
 dependencies {
+    compile project(':model')
+
+
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    compile('com.h2database:h2')
+
+
     compile('org.springframework.boot:spring-boot-starter-data-jpa') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
