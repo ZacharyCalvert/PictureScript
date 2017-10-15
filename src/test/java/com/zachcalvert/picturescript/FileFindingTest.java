@@ -1,7 +1,7 @@
 package com.zachcalvert.picturescript;
 
 import com.zachcalvert.picturescript.repository.FileRepository;
-import com.zachcalvert.picturescript.service.FileExtensionExtractorService;
+import com.zachcalvert.picturescript.service.util.FileExtensionExtractorService;
 import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;

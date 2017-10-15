@@ -15,6 +15,12 @@ public interface FileRepository extends JpaRepository<File, Long> {
   @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.extension in :fileTypes and f.folderBase.fromOutput = false")
   List<String> findRequiredOutputShaSums(@Param("fileTypes") List<String> fileTypes);
 
+  @Query("SELECT COUNT(DISTINCT f.sha256) FROM File f WHERE f.folderBase.fromOutput = false")
+  int findDistinctOutputShaSums();
+
+  @Query("SELECT COUNT(f) FROM File f WHERE f.folderBase.fromOutput = false")
+  int findTotalInputFiles();
+
   @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.sha256 in :shaSums and f.folderBase = :folderBase")
   List<String> findMoveShaSums(@Param("shaSums") List<String> shaSums, @Param("folderBase") FolderBase folderBase);
 

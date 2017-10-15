@@ -1,0 +1,11 @@
+apply plugin:'java'
+apply plugin:'idea'
+
+dependencies {
+    compile project(':model')
+
+    // exif processing
+    compile('com.drewnoakes:metadata-extractor:2.10.1')
+
+    testCompile('com.h2database:h2:1.4.196')
+}

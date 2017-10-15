@@ -1,4 +1,4 @@
-package com.zachcalvert.picturescript.service;
+package com.zachcalvert.picturescript.service.util;
 
 import java.io.File;
 import java.nio.file.Path;

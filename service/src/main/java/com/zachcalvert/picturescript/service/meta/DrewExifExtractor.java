@@ -1,27 +1,23 @@
 package com.zachcalvert.picturescript.service.meta;
 
 import com.drew.imaging.ImageMetadataReader;
-import com.drew.metadata.Metadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class DrewExifExtractor implements MetadataExtractor {
+public class DrewExifExtractor {
 
     private static final Logger logger = LoggerFactory.getLogger(DrewExifExtractor.class);
 
-    @Override
     public FileMetadata extractMetaData(File file) {
         logger.debug("Processing meta data for " + file.getAbsolutePath());
         if (!file.exists()) {

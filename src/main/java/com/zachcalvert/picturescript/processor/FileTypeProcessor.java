@@ -2,10 +2,7 @@ package com.zachcalvert.picturescript.processor;
 
 import com.drew.imaging.FileType;
 import com.zachcalvert.picturescript.event.FileDiscoveredEvent;
-import com.zachcalvert.picturescript.service.FileExtensionExtractorService;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.zachcalvert.picturescript.service.util.FileExtensionExtractorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

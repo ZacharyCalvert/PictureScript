@@ -1,6 +1,5 @@
-package com.zachcalvert.picturescript.service;
+package com.zachcalvert.picturescript.service.util;
 
-import org.apache.juli.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -11,9 +10,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 @Service
-public class ShaSumCalculator {
+public class ShaSumService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ShaSumCalculator.class);
+    private static final Logger logger = LoggerFactory.getLogger(ShaSumService.class);
 
     // Reference: http://www.javacreed.com/how-to-generate-sha1-hash-value-of-file/
     public String sha256(final File file) throws NoSuchAlgorithmException, IOException {

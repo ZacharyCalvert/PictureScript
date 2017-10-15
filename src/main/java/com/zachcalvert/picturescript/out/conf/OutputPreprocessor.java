@@ -1,8 +1,8 @@
 package com.zachcalvert.picturescript.out.conf;
 
 import com.zachcalvert.picturescript.err.OutputTemplateNotFoundException;
-import com.zachcalvert.picturescript.service.FileExtensionExtractorService;
-import com.zachcalvert.picturescript.service.PathService;
+import com.zachcalvert.picturescript.service.util.FileExtensionExtractorService;
+import com.zachcalvert.picturescript.service.util.PathService;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;

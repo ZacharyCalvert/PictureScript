@@ -33,6 +33,11 @@ subprojects {
 
     dependencies {
 
+        // utilities
+        compile('org.apache.commons:commons-lang3:3.6')
+        compile('commons-io:commons-io:2.4')
+        compile('org.apache.commons:commons-text:1.1')
+
         // testing
         testCompile('org.jmockit:jmockit:1.8')
         testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
@@ -59,6 +64,7 @@ configurations {
 
 dependencies {
     compile project(':model')
+    compile project(':service')
 
 
     compile('org.springframework.boot:spring-boot-starter-log4j2')
@@ -74,9 +80,6 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     compile('com.h2database:h2')
-
-    // exif processing
-    compile('com.drewnoakes:metadata-extractor:2.10.1')
 
     // logging
     compile('org.springframework.boot:spring-boot-starter') {
