@@ -18,6 +18,7 @@
 .DS_Store
 classes
 /out/
+/app/out/
 
 ### NetBeans ###
 nbproject/private/
