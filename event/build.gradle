@@ -3,5 +3,5 @@ apply plugin:'idea'
 
 dependencies {
     compile project(':model')
-    compile project(':service')
+    compile project(':ingestion-service')
 }
