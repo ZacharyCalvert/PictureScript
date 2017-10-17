@@ -65,6 +65,7 @@ configurations {
 dependencies {
     compile project(':model')
     compile project(':service')
+    compile project(':event')
 
 
     compile('org.springframework.boot:spring-boot-starter-log4j2')
