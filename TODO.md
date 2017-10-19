@@ -1,6 +1,7 @@
 
 # Next Work
 - Output definition
+- Rework File "isForExport"
 - Add original file name tracking
 - Monitor output events
 - Track original file name
@@ -14,6 +15,7 @@
 - Browser review
 - Code coverage
 - Jenkins
+- Command line central
 - Wire to maven central?
 
 # Branches 

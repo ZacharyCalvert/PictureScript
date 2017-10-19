@@ -1,7 +1,7 @@
 package com.zachcalvert.picturescript.out.event;
 
+import com.zachcalvert.picturescript.export.step.OutputStep;
 import com.zachcalvert.picturescript.out.conf.OutputOrder;
-import com.zachcalvert.picturescript.out.step.OutputStep;
 
 public abstract class StepProcessedEvent {
 

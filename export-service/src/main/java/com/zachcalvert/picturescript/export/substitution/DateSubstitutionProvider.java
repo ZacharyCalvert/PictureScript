@@ -1,6 +1,6 @@
-package com.zachcalvert.picturescript.out.substitution;
+package com.zachcalvert.picturescript.export.substitution;
 
-import com.zachcalvert.picturescript.out.conf.OutputOrder;
+import com.zachcalvert.picturescript.export.ExportRequest;
 import com.zachcalvert.picturescript.repository.FileRepository;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -23,7 +23,7 @@ public class DateSubstitutionProvider implements SubstitutionProvider {
   }
 
   @Override
-  public Map<String, String> prepareSubstitutions(String shaSum, Path from, OutputOrder order) {
+  public Map<String, String> prepareSubstitutions(String shaSum, Path from, ExportRequest exportRequest) {
     HashMap<String, String> result = new HashMap<>();
     Instant earliestInstant = fileRepository.findTopBySha256OrderByEarliestKnownDateDesc(shaSum).getEarliestKnownDate();
     result.put("yyyy", DateTimeFormatter.ofPattern("yyyy").withZone(ZoneId.systemDefault()).format(earliestInstant));

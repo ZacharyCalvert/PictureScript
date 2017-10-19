@@ -1,4 +1,4 @@
-package com.zachcalvert.picturescript.err;
+package com.zachcalvert.picturescript.export.err;
 
 public class StepInvalidException extends RuntimeException {
 

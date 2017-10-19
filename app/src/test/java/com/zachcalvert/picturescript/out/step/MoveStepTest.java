@@ -3,6 +3,8 @@ package com.zachcalvert.picturescript.out.step;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import com.zachcalvert.picturescript.export.step.CopyStep;
+import com.zachcalvert.picturescript.export.step.MoveStep;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;

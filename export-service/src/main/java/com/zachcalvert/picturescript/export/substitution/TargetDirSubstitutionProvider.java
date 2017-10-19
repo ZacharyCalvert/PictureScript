@@ -1,6 +1,6 @@
-package com.zachcalvert.picturescript.out.substitution;
+package com.zachcalvert.picturescript.export.substitution;
 
-import com.zachcalvert.picturescript.out.conf.OutputOrder;
+import com.zachcalvert.picturescript.export.ExportRequest;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public class TargetDirSubstitutionProvider implements SubstitutionProvider {
 
   @Override
-  public Map<String, String> prepareSubstitutions(String shaSum, Path from, OutputOrder order) {
+  public Map<String, String> prepareSubstitutions(String shaSum, Path from, ExportRequest export) {
     HashMap<String, String> result = new HashMap<>();
-    result.put("base", order.getBaseOutputPath().toString());
+    result.put("base", export.getBaseOutputPath().toString());
     return result;
   }
 }

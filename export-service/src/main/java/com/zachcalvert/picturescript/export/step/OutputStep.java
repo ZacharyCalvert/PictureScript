@@ -1,4 +1,4 @@
-package com.zachcalvert.picturescript.out.step;
+package com.zachcalvert.picturescript.export.step;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -1,5 +1,6 @@
 package com.zachcalvert.picturescript.out.step;
 
+import com.zachcalvert.picturescript.export.step.CopyStep;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
