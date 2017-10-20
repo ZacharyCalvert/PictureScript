@@ -1,8 +1,5 @@
 
 # Next Work
-- Export order processing
-- State processing
-- Table indexes (fast resolve lookups)
 - Output definition, JSON
 - Add original file name tracking
 - Monitor output events
@@ -17,6 +14,9 @@
 - Code coverage
 - Jenkins
 - Command line central
+- Documentation
+  - State diagrams
+  - Use cases
 - Wire to maven central?
 
 # Branches 
@@ -31,3 +31,6 @@
 - Execute plan
 - Dry run support (no execution of operation)
 - Send events of moves/copies
+- Export order processing
+- State processing
+- Table indexes (fast resolve lookups)

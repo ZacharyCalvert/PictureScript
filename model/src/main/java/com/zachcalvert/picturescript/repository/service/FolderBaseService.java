@@ -1,4 +1,4 @@
-package com.zachcalvert.picturescript.export.service;
+package com.zachcalvert.picturescript.repository.service;
 
 import com.zachcalvert.picturescript.model.FolderBase;
 import com.zachcalvert.picturescript.repository.FolderBaseRepository;

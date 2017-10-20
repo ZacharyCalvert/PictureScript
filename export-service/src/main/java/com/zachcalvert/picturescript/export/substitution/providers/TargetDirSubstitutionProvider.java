@@ -1,6 +1,7 @@
-package com.zachcalvert.picturescript.export.substitution;
+package com.zachcalvert.picturescript.export.substitution.providers;
 
 import com.zachcalvert.picturescript.export.ExportRequest;
+import com.zachcalvert.picturescript.export.substitution.SubstitutionProvider;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
