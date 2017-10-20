@@ -51,7 +51,6 @@ public class DirectoryIngestionService {
     logger.debug("Directory configured for processing: " + directory);
 
     FolderBase folderBase = new FolderBase();
-    folderBase.setFromOutput(!input);
     folderBase.setPath(directory);
     folderBaseRepository.save(folderBase);
 
@@ -87,6 +86,7 @@ public class DirectoryIngestionService {
           ingestionNotificationService.fileIgnored(folderBase, file);
         } else {
          File processedResult = fileProcessorService.processFile(file, folderBase);
+         processedResult.setAvailableForExport(true);
          fileRepository.save(processedResult);
          ingestionNotificationService.fileIngested(folderBase, file, processedResult);
         }

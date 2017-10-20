@@ -33,14 +33,14 @@ public abstract class RepoTestBase {
   }
 
   protected FolderBase constructAndSaveBase(String from, boolean fromOutput) {
-    FolderBase result = new FolderBase(from, fromOutput);
+    FolderBase result = new FolderBase(from);
     folderBaseRepository.save(result);
     return result;
   }
 
-  protected File constructAndSafeFile(String sha256, String path, Instant dateCreated, Instant earliestKnownDate,
+  protected File constructAndSafeFile(String sha256, boolean forExport, String path, Instant dateCreated, Instant earliestKnownDate,
       String extension, FolderBase folderBase) {
-    File file = new File(sha256, path, dateCreated, earliestKnownDate, extension, folderBase);
+    File file = new File(forExport, sha256, path, dateCreated, earliestKnownDate, extension, folderBase);
     fileRepository.save(file);
     return file;
   }

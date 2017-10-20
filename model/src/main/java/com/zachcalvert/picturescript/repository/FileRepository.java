@@ -12,13 +12,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FileRepository extends JpaRepository<File, Long> {
 
-  @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.extension in :fileTypes and f.folderBase.fromOutput = false")
+  @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.extension in :fileTypes and f.availableForExport = true")
   List<String> findRequiredOutputShaSums(@Param("fileTypes") List<String> fileTypes);
 
-  @Query("SELECT COUNT(DISTINCT f.sha256) FROM File f WHERE f.folderBase.fromOutput = false")
+  @Query("SELECT COUNT(DISTINCT f.sha256) FROM File f WHERE f.availableForExport = true")
   int findDistinctOutputShaSums();
 
-  @Query("SELECT COUNT(f) FROM File f WHERE f.folderBase.fromOutput = false")
+  @Query("SELECT COUNT(f) FROM File f WHERE f.availableForExport = true")
   int findTotalInputFiles();
 
   @Query("SELECT DISTINCT f.sha256 FROM File f WHERE f.sha256 in :shaSums and f.folderBase = :folderBase")

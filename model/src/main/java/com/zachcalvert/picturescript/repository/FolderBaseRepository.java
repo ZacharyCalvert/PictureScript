@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FolderBaseRepository extends CrudRepository<FolderBase, Long> {
 
-  FolderBase findByPathAndFromOutput(String path, boolean fromOutput);
+  FolderBase findByPath(String path);
 }

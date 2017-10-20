@@ -52,7 +52,7 @@ public class OrderDeliveryService {
 
   public void processOrder(OutputOrder order) {
     YmlOutputTemplate ymlOutputTemplate = order.getYmlOutputTemplate();
-    FolderBase outputFolderBase = folderBaseRepository.findByPathAndFromOutput(order.getBaseOutputPath().toString(), true);
+    FolderBase outputFolderBase = folderBaseRepository.findByPath(order.getBaseOutputPath().toString());
     List<String> allShaSums = fileRepository.findRequiredOutputShaSums(ymlOutputTemplate.getTypes());
 
     List<String> moves = fileRepository.findMoveShaSums(allShaSums, outputFolderBase);

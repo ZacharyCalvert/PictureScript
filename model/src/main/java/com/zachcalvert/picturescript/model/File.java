@@ -15,8 +15,9 @@ public class File {
     public File() {
     }
 
-    public File(String sha256, String path, Instant dateCreated, Instant earliestKnownDate,
+    public File(boolean availableForExport, String sha256, String path, Instant dateCreated, Instant earliestKnownDate,
         String extension, FolderBase folderBase) {
+        this.availableForExport = availableForExport;
         this.sha256 = sha256;
         this.path = path;
         this.dateCreated = dateCreated;
@@ -28,6 +29,9 @@ public class File {
     @Id
     @GeneratedValue
     private long id;
+
+    @Column(nullable = false, unique = false, updatable = true)
+    private boolean availableForExport;
 
     @Column(nullable = false, unique = false, updatable = false)
     private String sha256;
@@ -97,5 +101,13 @@ public class File {
 
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+    public boolean isAvailableForExport() {
+        return availableForExport;
+    }
+
+    public void setAvailableForExport(boolean availableForExport) {
+        this.availableForExport = availableForExport;
     }
 }
