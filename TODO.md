@@ -1,10 +1,11 @@
 
 # Next Work
-- Output definition
-- Rework File "isForExport"
+- Export order processing
+- State processing
+- Table indexes (fast resolve lookups)
+- Output definition, JSON
 - Add original file name tracking
 - Monitor output events
-- Track original file name
 - Load output file and validate existing files
 - Retain move/copy file attributes
 - Update file path when moving (ie update File h2 entry)

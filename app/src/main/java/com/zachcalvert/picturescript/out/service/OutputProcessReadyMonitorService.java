@@ -1,8 +1,7 @@
-package com.zachcalvert.picturescript.out.event;
+package com.zachcalvert.picturescript.out.service;
 
 import com.zachcalvert.picturescript.event.InputProcessingCompleteEvent;
 import com.zachcalvert.picturescript.out.conf.OutputOrder;
-import com.zachcalvert.picturescript.out.service.OrderDeliveryService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

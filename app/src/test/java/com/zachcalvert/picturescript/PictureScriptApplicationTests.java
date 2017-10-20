@@ -1,6 +1,7 @@
 package com.zachcalvert.picturescript;
 
 import com.zachcalvert.picturescript.repository.FileRepository;
+import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,8 @@ public class PictureScriptApplicationTests {
 
 	@Test
 	public void testTotalCount() {
-		Assert.assertEquals("Unexpected count of total files to be processed as part of application startup", 5, fileRepository.count());
+		// total of 5 input files processed, 3 written to output
+		Assert.assertEquals("Unexpected count of total files to be processed as part of application completion", 8, fileRepository.count());
+		Assert.assertEquals(3, fileRepository.findRequiredOutputShaSums(Arrays.asList("png")).size());
 	}
 }

@@ -1,15 +1,14 @@
-package com.zachcalvert.picturescript.export.step;
+package com.zachcalvert.picturescript.export.service;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.stereotype.Service;
 
-public interface OutputStep {
+@Service
+public class ConflictResolutionStrategyService {
 
-  void execute(boolean dryRun);
-
-  default Path resolveConflict(Path destination) {
+  public Path ensureNoFilePlacementConflict(Path destination) {
     int iteration = 1;
 
     String fileName = destination.getFileName().toString();

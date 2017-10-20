@@ -1,4 +1,4 @@
-package com.zachcalvert.picturescript.export;
+package com.zachcalvert.picturescript.export.service;
 
 public interface DryRunService {
   boolean isDryRun();
