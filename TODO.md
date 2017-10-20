@@ -1,8 +1,8 @@
 
 # Next Work
-- Output definition
+- Output definition, JSON
+- Add original file name tracking
 - Monitor output events
-- Track original file name
 - Load output file and validate existing files
 - Retain move/copy file attributes
 - Update file path when moving (ie update File h2 entry)
@@ -13,6 +13,10 @@
 - Browser review
 - Code coverage
 - Jenkins
+- Command line central
+- Documentation
+  - State diagrams
+  - Use cases
 - Wire to maven central?
 
 # Branches 
@@ -27,3 +31,6 @@
 - Execute plan
 - Dry run support (no execution of operation)
 - Send events of moves/copies
+- Export order processing
+- State processing
+- Table indexes (fast resolve lookups)

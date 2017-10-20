@@ -1,0 +1,8 @@
+apply plugin:'java'
+apply plugin:'idea'
+
+dependencies {
+    compile project(':model')
+
+    testCompile('com.h2database:h2:1.4.196')
+}
