@@ -4,11 +4,17 @@ import com.zachcalvert.picturescript.model.File;
 import com.zachcalvert.picturescript.model.FolderBase;
 import com.zachcalvert.picturescript.repository.FileRepository;
 import com.zachcalvert.picturescript.repository.FolderBaseRepository;
+import com.zachcalvert.picturescript.repository.service.FolderBaseService;
 import com.zachcalvert.picturescript.service.util.PathService;
+import com.zachcalvert.picturescript.state.ProcessedFileStateManagementService;
+import com.zachcalvert.picturescript.state.ProcessedFolderLoadListener;
+import com.zachcalvert.picturescript.state.dto.ProcessedFile;
+import com.zachcalvert.picturescript.state.dto.ProcessedFolderState;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
@@ -26,7 +32,7 @@ public class DirectoryIngestionService {
 
   private FileRepository fileRepository;
 
-  private FolderBaseRepository folderBaseRepository;
+  private FolderBaseService folderBaseService;
 
   private IngestionNotificationService ingestionNotificationService;
 
@@ -34,25 +40,30 @@ public class DirectoryIngestionService {
 
   private PathService pathService;
 
+  private ProcessedFileStateManagementService processedFileStateManagementService;
+
   @Autowired
-  public DirectoryIngestionService(FileRepository fileRepository,
-      FolderBaseRepository folderBaseRepository,
+  public DirectoryIngestionService(
+      FileRepository fileRepository,
+      FolderBaseService folderBaseService,
       IngestionNotificationService ingestionNotificationService,
-      FileProcessorService fileProcessorService, PathService pathService) {
+      FileProcessorService fileProcessorService,
+      PathService pathService,
+      ProcessedFileStateManagementService processedFileStateManagementService) {
     this.fileRepository = fileRepository;
-    this.folderBaseRepository = folderBaseRepository;
+    this.folderBaseService = folderBaseService;
     this.ingestionNotificationService = ingestionNotificationService;
     this.fileProcessorService = fileProcessorService;
     this.pathService = pathService;
+    this.processedFileStateManagementService = processedFileStateManagementService;
   }
 
   public void processDirectory(boolean input, String directory, List<String> ignoredFileExtensions) {
 
     logger.debug("Directory configured for processing: " + directory);
 
-    FolderBase folderBase = new FolderBase();
-    folderBase.setPath(directory);
-    folderBaseRepository.save(folderBase);
+    FolderBase folderBase = folderBaseService.createOrFindFolderBase(directory);
+    processedFileStateManagementService.attemptLoadPreviouslyProcessedDirectory(folderBase, true);
 
     try {
       Path dirPath = pathService.getPath(directory);
@@ -85,10 +96,17 @@ public class DirectoryIngestionService {
         if (isIgnored(file)) {
           ingestionNotificationService.fileIgnored(folderBase, file);
         } else {
-         File processedResult = fileProcessorService.processFile(file, folderBase);
-         processedResult.setAvailableForExport(true);
-         fileRepository.save(processedResult);
-         ingestionNotificationService.fileIngested(folderBase, file, processedResult);
+
+         File existingResult = fileRepository.findFileByPath(file.toString());
+         if (existingResult != null) {
+           existingResult.setAvailableForExport(true);
+           fileRepository.save(existingResult);
+         } else {
+           File processedResult = fileProcessorService.processFile(file, folderBase);
+           processedResult.setAvailableForExport(true);
+           fileRepository.save(processedResult);
+           ingestionNotificationService.fileIngested(folderBase, file, processedResult);
+         }
         }
       }
       return FileVisitResult.CONTINUE;

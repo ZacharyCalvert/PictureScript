@@ -1,9 +1,9 @@
 
 # Next Work
 - Output definition, JSON
+- Load output file and validate existing files
 - Add original file name tracking
 - Monitor output events
-- Load output file and validate existing files
 - Retain move/copy file attributes
 - Update file path when moving (ie update File h2 entry)
 - Transactions applied to move (write lock)/copy (read lock)

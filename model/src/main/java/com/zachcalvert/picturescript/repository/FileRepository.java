@@ -27,6 +27,10 @@ public interface FileRepository extends JpaRepository<File, Long> {
   @Query("SELECT f FROM File f WHERE f.sha256 = :sha and f.folderBase = :folderBase")
   File findFileFileForMove(@Param("sha") String sha, @Param("folderBase") FolderBase folderBase);
 
+  List<File> findFilesByFolderBase(FolderBase folderBase);
+
+  File findFileByPath(String path);
+
   File findTopBySha256AndAvailableForExportIsTrue(String shaSum);
 
   File findTopBySha256OrderByEarliestKnownDateDesc(String shaSum);
