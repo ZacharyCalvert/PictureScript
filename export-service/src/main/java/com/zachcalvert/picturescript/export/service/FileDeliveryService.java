@@ -78,7 +78,7 @@ public class FileDeliveryService {
     Path to = conflictResolutionStrategyService.ensureNoFilePlacementConflict(Paths.get(targetToPath));
     try {
       if (!isDryRun) {
-        FileUtils.copyFile(from.toFile(), to.toFile());
+        FileUtils.copyFile(from.toFile(), to.toFile(), true);
         logger.info("Copy performed from {} to {}", from.toString(), to.toString());
       } else {
         logger.info("Dry run, but would perform copy from {} to {}", from.toString(), to.toString());
