@@ -1,6 +1,11 @@
 package com.zachcalvert.picturescript.service.meta;
 
 import com.drew.imaging.ImageMetadataReader;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -30,13 +35,23 @@ public class DrewExifExtractor {
         try {
             BasicFileAttributes attr = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
             dateCreated = attr.creationTime().toInstant();
-            earliestKnownDate = getEarliestInstant(dateCreated, attr.lastAccessTime().toInstant(), attr.lastModifiedTime().toInstant()).orElse(null);
+            earliestKnownDate = getEarliestInstant(dateCreated,
+                attr.lastModifiedTime().toInstant(), attr.lastAccessTime().toInstant(), attr.lastModifiedTime().toInstant()).orElse(null);
         } catch (Exception e) {
             throw new RuntimeException("Could not get basic file attributes for " + file.getAbsolutePath(), e);
         }
 
         try {
-            ImageMetadataReader.readMetadata(file);
+            Metadata meta = ImageMetadataReader.readMetadata(file);
+            for (Directory directory:meta.getDirectories()) {
+                for (Tag tag: directory.getTags()) {
+                    try {
+                        Date date = (Date)directory.getObject(tag.getTagType());
+                        earliestKnownDate = getEarliestInstant(date.toInstant(), earliestKnownDate).orElse(null);
+                    } catch (Exception e) {} // ignore
+                }
+            }
+
         } catch (Exception e) {
             logger.warn("Error extracting file meta data for {}, due to {}", file.getAbsolutePath(), e.getMessage());
         }

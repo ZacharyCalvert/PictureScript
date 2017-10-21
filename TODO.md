@@ -1,11 +1,7 @@
 
 # Next Work
-- Output definition, JSON
-- Load output file and validate existing files
 - Add original file name tracking
-- Monitor output events
 - Retain move/copy file attributes
-- Update file path when moving (ie update File h2 entry)
 - Transactions applied to move (write lock)/copy (read lock)
 - Integration (e-2-e) tests
 - Command line instead of SB YML
@@ -34,3 +30,6 @@
 - Export order processing
 - State processing
 - Table indexes (fast resolve lookups)
+- Output definition, JSON
+- Load output file and validate existing files
+- Update file path when moving (ie update File h2 entry)

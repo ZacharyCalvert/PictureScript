@@ -18,6 +18,7 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -93,7 +94,7 @@ public class DirectoryIngestionService {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
       if (attrs.isRegularFile() && ! isIgnored(file)) {
-        if (isIgnored(file)) {
+        if (isIgnored(file) || StringUtils.startsWith(FilenameUtils.getName(file.toString()), ".")) {
           ingestionNotificationService.fileIgnored(folderBase, file);
         } else {
 
