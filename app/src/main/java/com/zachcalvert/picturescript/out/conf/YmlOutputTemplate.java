@@ -11,7 +11,7 @@ public class YmlOutputTemplate {
 
   private List<String> types;
 
-  private String format;
+  private List<String> format;
 
   public String getName() {
     return name;
@@ -29,11 +29,11 @@ public class YmlOutputTemplate {
     this.types = types;
   }
 
-  public String getFormat() {
+  public List<String> getFormat() {
     return format;
   }
 
-  public void setFormat(String format) {
+  public void setFormat(List<String> format) {
     this.format = format;
   }
 }

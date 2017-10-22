@@ -1,9 +1,6 @@
 
 # Next Work
-- Add original file name tracking
-- Retain move/copy file attributes
-- Transactions applied to move (write lock)/copy (read lock)
-- Integration (e-2-e) tests
+- Rerun import
 - Command line instead of SB YML
 - Thread output processing
 - Browser review
@@ -21,6 +18,12 @@
 - IT definitions
 
 # Done 
+- Convert VOB to mp4s
+- Track original file name
+- Log files found not exported (suspect)
+- Retain move/copy file attributes
+- Transactions applied to move (write lock)/copy (read lock)
+- Integration (e-2-e) tests
 - Conflict resolution strategy for file collisions
 - Complete name substitutions 
 - Define plan

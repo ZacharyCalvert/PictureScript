@@ -76,7 +76,7 @@ public class ProcessedFileStateManagementService {
       if (found != null) {
         listeners.stream().forEach(listener -> listener.fileAlreadyExists(base, processedFile, found));
       } else {
-        File file = new File(availableForExport, processedFile.getSha256(), path.toString(), processedFile.getDateCreated().toInstant(), processedFile.getEarliestKnownDate().toInstant(), processedFile.getExtension(), base);
+        File file = new File(availableForExport, processedFile.getSha256(), path.toString(), processedFile.getDateCreated().toInstant(), processedFile.getEarliestKnownDate().toInstant(), processedFile.getExtension(), base, processedFile.getOriginalFileName());
         fileRepository.save(file);
         listeners.stream().forEach(listener -> listener.fileLoadedFromState(base, processedFile, found));
       }

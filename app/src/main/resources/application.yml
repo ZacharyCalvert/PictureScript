@@ -3,12 +3,6 @@ logging.level.org.springframework: INFO
 logging.level.org.hibernate: ERROR
 logging.level.com.zachcalvert: DEBUG
 
-load:
-  ignore:
-    - txt
-    - pdf
-
-
 output.templates:
   - name: photos
     types:
@@ -18,7 +12,11 @@ output.templates:
       - GIF
       - BMP
       - PNG
-    format: "${base}/photos/${yyyy}/${MM}/${dd}/${filename}"
+      - CR2
+      - gif
+    format:
+      - "${base}/photos/${yyyy}/${MM}/${parent_dir}/${filename}"
+      - "${base}/photos/${yyyy}/${MM}/${dd}/${filename}"
   - name: movies
     types:
       - avi
@@ -28,4 +26,27 @@ output.templates:
       - mv4p
       - mpg
       - mpeg
-    format: "${base}/movies/${yyyy}/${MM}/${dd}/${filename}"
+      - m4v
+    format:
+      - "${base}/movies/${yyyy}/${MM}/${parent_dir}/${filename}"
+      - "${base}/movies/${yyyy}/${MM}/${dd}/${filename}"
+
+load:
+  ignore:
+    - txt
+    - pdf
+    - mdf
+    - sh
+    - ini
+    - html
+    - htm
+    - dat
+    - db
+    - lnk
+    - mds
+    - mix
+    - iso
+    - bup
+    - ifo
+    - vob
+    - zip

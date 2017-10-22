@@ -67,7 +67,7 @@ public class FileDeliveryService {
     File forCopy = fileRepository.findTopBySha256AndAvailableForExportIsTrue(shaSum);
     Path from = Paths.get(forCopy.getPath());
     Path copiedResultTo = processFileCopy(dryRun, from, toPath);
-    File resultingFile = new File(false, forCopy.getSha256(), copiedResultTo.toString(), forCopy.getDateCreated(), forCopy.getEarliestKnownDate(), forCopy.getExtension(), outputFolder);
+    File resultingFile = new File(false, forCopy.getSha256(), copiedResultTo.toString(), forCopy.getDateCreated(), forCopy.getEarliestKnownDate(), forCopy.getExtension(), outputFolder, forCopy.getOriginalFileName());
     fileRepository.save(resultingFile);
     if (!dryRun) {
       exportNotificationService.fileCopied(from, copiedResultTo, forCopy, resultingFile);

@@ -16,7 +16,7 @@ public class File {
     }
 
     public File(boolean availableForExport, String sha256, String path, Instant dateCreated, Instant earliestKnownDate,
-        String extension, FolderBase folderBase) {
+        String extension, FolderBase folderBase, String originalFileName) {
         this.availableForExport = availableForExport;
         this.sha256 = sha256;
         this.path = path;
@@ -24,6 +24,7 @@ public class File {
         this.earliestKnownDate = earliestKnownDate;
         this.extension = extension;
         this.folderBase = folderBase;
+        this.originalFileName = originalFileName;
     }
 
     @Id
@@ -47,6 +48,9 @@ public class File {
 
     @Column(nullable = true, unique = false, updatable = false)
     private String extension;
+
+    @Column(nullable = false, unique = false, updatable = false)
+    private String originalFileName;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private FolderBase folderBase;
@@ -109,5 +113,13 @@ public class File {
 
     public void setAvailableForExport(boolean availableForExport) {
         this.availableForExport = availableForExport;
+    }
+
+    public String getOriginalFileName() {
+        return originalFileName;
+    }
+
+    public void setOriginalFileName(String originalFileName) {
+        this.originalFileName = originalFileName;
     }
 }

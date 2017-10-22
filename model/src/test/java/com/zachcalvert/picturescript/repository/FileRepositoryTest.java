@@ -21,12 +21,12 @@ public class FileRepositoryTest extends RepoTestBase {
 
   @Before
   public void setUpFiles() {
-    constructAndSafeFile("a", true, "in1/a", Instant.MIN, Instant.MIN, "jpg", in1);
-    constructAndSafeFile("a", true, "in2/a", Instant.MIN, Instant.MIN, "jpg", in2);
-    constructAndSafeFile("b", true, "in1/b", Instant.MIN, Instant.MIN, "jpg", in1);
-    constructAndSafeFile("b", false, "out1/b", Instant.MIN, Instant.MIN, "jpg", out1);
-    constructAndSafeFile("c", false, "out2/c", Instant.MIN, Instant.MIN, "jpg", out2);
-    constructAndSafeFile("d", true, "in1/d", Instant.MIN, Instant.MIN, "png", in1);
+    constructAndSaveFile("a", true, "in1/a", Instant.MIN, Instant.MIN, "jpg", in1);
+    constructAndSaveFile("a", true, "in2/a", Instant.MIN, Instant.MIN, "jpg", in2);
+    constructAndSaveFile("b", true, "in1/b", Instant.MIN, Instant.MIN, "jpg", in1);
+    constructAndSaveFile("b", false, "out1/b", Instant.MIN, Instant.MIN, "jpg", out1);
+    constructAndSaveFile("c", false, "out2/c", Instant.MIN, Instant.MIN, "jpg", out2);
+    constructAndSaveFile("d", true, "in1/d", Instant.MIN, Instant.MIN, "png", in1);
 
   }
 

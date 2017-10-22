@@ -42,7 +42,7 @@ public class OrderDeliveryService {
   private ExportRequest convertOrder(OutputOrder order, List<String> allShaSums) {
     ExportRequest request = new ExportRequest();
     request.setBaseOutputPath(order.getBaseOutputPath());
-    request.setPathFormats(Arrays.asList(order.getYmlOutputTemplate().getFormat()));
+    request.setPathFormats(order.getYmlOutputTemplate().getFormat());
     request.setShaSumIds(allShaSums);
     return request;
   }

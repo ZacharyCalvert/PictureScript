@@ -27,6 +27,9 @@ public interface FileRepository extends JpaRepository<File, Long> {
   @Query("SELECT f FROM File f WHERE f.sha256 = :sha and f.folderBase = :folderBase")
   File findFileFileForMove(@Param("sha") String sha, @Param("folderBase") FolderBase folderBase);
 
+  @Query("SELECT DISTINCT f.extension FROM File f")
+  List<String> findAllFileExtensions();
+
   List<File> findFilesByFolderBase(FolderBase folderBase);
 
   File findFileByPath(String path);

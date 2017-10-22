@@ -2,7 +2,10 @@ package com.zachcalvert.picturescript.out.service;
 
 import com.zachcalvert.picturescript.event.InputProcessingCompleteEvent;
 import com.zachcalvert.picturescript.out.conf.OutputOrder;
+import com.zachcalvert.picturescript.service.report.ReportService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +21,16 @@ public class OutputProcessReadyMonitorService {
 
   private OrderDeliveryService orderDeliveryService;
 
+  private List<ReportService> reports;
+
   @Autowired
   public OutputProcessReadyMonitorService(
       List<OutputOrder> outputOrders,
-      OrderDeliveryService orderDeliveryService) {
+      OrderDeliveryService orderDeliveryService,
+      Optional<List<ReportService>> reportServices) {
     this.outputOrders = outputOrders;
     this.orderDeliveryService = orderDeliveryService;
+    this.reports = reportServices.orElseGet(ArrayList::new);
   }
 
   @EventListener
@@ -33,5 +40,6 @@ public class OutputProcessReadyMonitorService {
     for (OutputOrder order:outputOrders) {
       orderDeliveryService.processOrder(order);
     }
+    this.reports.stream().forEach(reportService -> reportService.logReport());
   }
 }

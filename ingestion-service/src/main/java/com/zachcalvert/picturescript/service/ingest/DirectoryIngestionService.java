@@ -105,6 +105,7 @@ public class DirectoryIngestionService {
          } else {
            File processedResult = fileProcessorService.processFile(file, folderBase);
            processedResult.setAvailableForExport(true);
+           processedResult.setOriginalFileName(file.toAbsolutePath().toString());
            fileRepository.save(processedResult);
            ingestionNotificationService.fileIngested(folderBase, file, processedResult);
          }

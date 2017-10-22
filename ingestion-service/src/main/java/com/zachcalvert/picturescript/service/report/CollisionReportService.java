@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CollisionReportService {
+public class CollisionReportService implements ReportService {
 
   private static final Logger logger = LoggerFactory.getLogger(CollisionReportService.class);
 
@@ -24,5 +24,10 @@ public class CollisionReportService {
     int inputTotal = fileRepository.findTotalInputFiles();
     int distinctTotal = fileRepository.findDistinctOutputShaSums();
     logger.info("Total input files of {} with distinct sha sums found {}, for a total of {} collisions", inputTotal, distinctTotal, inputTotal - distinctTotal);
+  }
+
+  @Override
+  public void logReport() {
+    logCollisionsFound();
   }
 }

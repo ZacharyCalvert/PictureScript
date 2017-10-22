@@ -20,6 +20,8 @@ public class ProcessedFile {
 
   private String extension;
 
+  private String originalFileName;
+
   public ProcessedFile() {}
 
   public ProcessedFile(FolderBase folderBase, File file) {
@@ -28,6 +30,7 @@ public class ProcessedFile {
     this.dateCreated = Date.from(file.getDateCreated());
     this.earliestKnownDate = Date.from(file.getEarliestKnownDate());
     this.extension = file.getExtension();
+    this.originalFileName = file.getOriginalFileName();
   }
 
   public String getSha256() {
@@ -68,5 +71,13 @@ public class ProcessedFile {
 
   public void setExtension(String extension) {
     this.extension = extension;
+  }
+
+  public String getOriginalFileName() {
+    return originalFileName;
+  }
+
+  public void setOriginalFileName(String originalFileName) {
+    this.originalFileName = originalFileName;
   }
 }

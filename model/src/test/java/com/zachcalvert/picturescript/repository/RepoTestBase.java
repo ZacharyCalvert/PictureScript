@@ -38,9 +38,9 @@ public abstract class RepoTestBase {
     return result;
   }
 
-  protected File constructAndSafeFile(String sha256, boolean forExport, String path, Instant dateCreated, Instant earliestKnownDate,
+  protected File constructAndSaveFile(String sha256, boolean forExport, String path, Instant dateCreated, Instant earliestKnownDate,
       String extension, FolderBase folderBase) {
-    File file = new File(forExport, sha256, path, dateCreated, earliestKnownDate, extension, folderBase);
+    File file = new File(forExport, sha256, path, dateCreated, earliestKnownDate, extension, folderBase, path);
     fileRepository.save(file);
     return file;
   }

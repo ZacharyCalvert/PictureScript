@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FileTypeReportService implements IngestionListener {
+public class FileTypeReportService implements IngestionListener, ReportService {
 
   private static final Logger logger = LoggerFactory.getLogger(FileTypeReportService.class);
 
@@ -28,6 +28,11 @@ public class FileTypeReportService implements IngestionListener {
   public FileTypeReportService(
       FileExtensionExtractorService fileExtensionExtractorService) {
     this.fileExtensionExtractorService = fileExtensionExtractorService;
+  }
+
+  @Override
+  public void logReport() {
+    logTypesFound();
   }
 
   @PreDestroy
