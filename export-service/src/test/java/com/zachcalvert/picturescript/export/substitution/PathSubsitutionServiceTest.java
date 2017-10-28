@@ -2,6 +2,7 @@ package com.zachcalvert.picturescript.export.substitution;
 
 import com.zachcalvert.picturescript.export.ExportRequest;
 import com.zachcalvert.picturescript.export.substitution.providers.DateSubstitutionProvider;
+import com.zachcalvert.picturescript.export.substitution.providers.ParentDirSubstitionProvider;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -25,7 +26,8 @@ public class PathSubsitutionServiceTest {
   FakeSubstitionService fakeSubstitionService;
 
   @Test
-  public void testHappyPathReplacements(@Mocked DateSubstitutionProvider doNothingMock) {
+  public void testHappyPathReplacements(@Mocked DateSubstitutionProvider doNothingMock, @Mocked
+      ParentDirSubstitionProvider doNothingMock2) {
     Path result = subsitutionService.constructTargetOutputPath("abc", Paths.get("/not/real/path"), new ExportRequest(Paths.get("/some/fake/base"),
         Arrays.asList("a1"), Arrays.asList("/${1}/b", "/a/b/c")));
     assertEquals("/a/b/c", result.toString());
@@ -39,7 +41,8 @@ public class PathSubsitutionServiceTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testInvalidConfiguration(@Mocked DateSubstitutionProvider doNothingMock) {
+  public void testInvalidConfiguration(@Mocked DateSubstitutionProvider doNothingMock, @Mocked
+      ParentDirSubstitionProvider doNothingMock2) {
     subsitutionService.constructTargetOutputPath("abc", Paths.get("/not/real/path"), new ExportRequest(Paths.get("/some/fake/base"),
         Arrays.asList("a1"), Arrays.asList("/${notfound}/b")));
   }

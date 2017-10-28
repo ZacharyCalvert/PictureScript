@@ -1,5 +1,12 @@
 
 # Next Work
+- REST API
+- Delete Support
+- Tag Support
+- Custom Export
+- Javadoc
+- README
+- Module description
 - Rerun import
 - Command line instead of SB YML
 - Thread output processing
@@ -18,6 +25,7 @@
 - IT definitions
 
 # Done 
+- Warn on files
 - Convert VOB to mp4s
 - Track original file name
 - Log files found not exported (suspect)
