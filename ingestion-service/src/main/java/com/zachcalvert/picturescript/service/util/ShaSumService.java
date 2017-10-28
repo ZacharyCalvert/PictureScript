@@ -34,7 +34,7 @@ public class ShaSumService {
                 formatter.format("%02x", b);
             }
             String shaSum =  formatter.toString();
-            logger.info("SHA SUM for {} is {} ", file.getAbsolutePath(), shaSum);
+            logger.debug("SHA SUM for {} is {} ", file.getAbsolutePath(), shaSum);
             return shaSum;
         }
     }
